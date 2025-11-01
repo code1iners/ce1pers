@@ -1,0 +1,36 @@
+{
+  "name": "@ce1pers/library-template",
+  "version": "1.0.0",
+  "description": "Simple library template for TypeScript projects.",
+  "keywords": [
+    "library",
+    "template",
+    "typescript"
+  ],
+  "homepage": "https://github.com/code1iners/celpers#readme",
+  "bugs": {
+    "url": "https://github.com/code1iners/celpers/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code1iners/celpers.git"
+  },
+  "license": "MIT",
+  "author": "__coma__ <codeliner96@gmail.com>",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "deploy": "npm run build && npm publish --access public",
+    "lint": "eslint . --max-warnings=0",
+    "start": "node ./dist/index.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "eslint": "^9.39.0",
+    "globals": "^16.5.0",
+    "jiti": "^2.6.1",
+    "typescript-eslint": "^8.46.2"
+  }
+}
