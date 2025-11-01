@@ -1,0 +1,37 @@
+{
+  "name": "@ce1pers/social-login-redirect",
+  "version": "1.0.0",
+  "description": "Social login redirect helper.",
+  "keywords": [
+    "oauth",
+    "social",
+    "rest",
+    "redirect"
+  ],
+  "homepage": "https://github.com/code1iners/celpers#readme",
+  "bugs": {
+    "url": "https://github.com/code1iners/celpers/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code1iners/celpers.git"
+  },
+  "license": "MIT",
+  "author": "__coma__ <codeliner96@gmail.com>",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "deploy": "npm run build && npm publish --access public",
+    "dev": ""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "eslint": "^9.39.0",
+    "globals": "^16.5.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.2"
+  }
+}
