@@ -113,9 +113,9 @@ MIT © [__coma__](https://github.com/code1iners)
 
 ## 기여
 
-버그 리포트나 기능 제안은 [GitHub Issues](https://github.com/code1iners/celpers/issues)에서 환영합니다.
+버그 리포트나 기능 제안은 [GitHub Issues](https://github.com/code1iners/ce1pers/issues)에서 환영합니다.
 
 ## 링크
 
-- [GitHub Repository](https://github.com/code1iners/celpers)
+- [GitHub Repository](https://github.com/code1iners/ce1pers)
 - [npm Package](https://www.npmjs.com/package/@ce1pers/style-helpers)
