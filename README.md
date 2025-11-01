@@ -10,7 +10,6 @@ Collection of react hook for Javascript side application or framework.
 |useNumber|Collection of numeric helpers|[useNumber](https://github.com/code1iners/ce1pers/tree/main/useNumber)|[@ce1pers/use-number](https://www.npmjs.com/package/@ce1pers/use-number)| * | Typescript |
 |useSort|Collection of sort helpers|[useSort](https://github.com/code1iners/ce1pers/tree/main/useSort)|[@ce1pers/use-sort](https://www.npmjs.com/package/@ce1pers/use-sort)| * | Typescript |
 |useArray|Collection of array helpers|[useArray](https://github.com/code1iners/ce1pers/tree/main/useArray)|[@ce1pers/use-array](https://www.npmjs.com/package/@ce1pers/use-array)| * | Typescript |
-|useClass|Useful class helpers|[useClass](https://github.com/code1iners/ce1pers/tree/main/useClass)|[@ce1pers/use-class](https://www.npmjs.com/package/@ce1pers/use-class)| React | Typescript |
 |useWindow|Useful window helpers|[useWindow](https://github.com/code1iners/ce1pers/tree/main/useWindow)|[@ce1pers/use-window](https://www.npmjs.com/package/@ce1pers/use-window)| React, * | Typescript |
 |usePassword|Useful Password helpers|[usePassword](https://github.com/code1iners/ce1pers/tree/main/usePassword)|[@ce1pers/use-password](https://www.npmjs.com/package/@ce1pers/use-password)|*|Javascript & Typescript|
 |usePage|Pagination helper|[usePage](https://github.com/code1iners/ce1pers/tree/main/usePage)|[@ce1pers/use-page](https://www.npmjs.com/package/@ce1pers/use-page)|*|Javascript & Typescript|
@@ -30,5 +29,4 @@ Collection of react hook for Javascript side application or framework.
 |naming-convention-helpers|Naming convention convert helper|[naming-convention-helpers](https://github.com/code1iners/ce1pers/tree/main/naming-convention-helpers)|[@ce1pers/naming-convention-helpers](https://www.npmjs.com/package/@ce1pers/naming-convention-helpers)| Typescript |
 |array-helpers|Included simple array helpers|[array-helpers](https://github.com/code1iners/ce1pers/tree/main/array-helpers)|[@ce1pers/array-helpers](https://www.npmjs.com/package/@ce1pers/array-helpers)| TypeScript |
 |social-login-redirect|This helps to implement social login (redirect).|[social-login-redirect](https://github.com/code1iners/ce1pers/tree/main/social-login-redirect)|[@ce1pers/social-login-redirect](https://www.npmjs.com/package/@ce1pers/social-login-redirect)| TypeScript |
-
-
+|style-helpers|Simple style utility helper function provider|[style-helpers](https://github.com/code1iners/ce1pers/tree/main/style-helpers)|[@ce1pers/style-helpers](https://www.npmjs.com/package/@ce1pers/style-helpers)| TypeScript |
