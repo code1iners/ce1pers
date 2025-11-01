@@ -8,13 +8,13 @@
     "rest",
     "redirect"
   ],
-  "homepage": "https://github.com/code1iners/celpers#readme",
+  "homepage": "https://github.com/code1iners/ce1pers#readme",
   "bugs": {
-    "url": "https://github.com/code1iners/celpers/issues"
+    "url": "https://github.com/code1iners/ce1pers/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/code1iners/celpers.git"
+    "url": "git+https://github.com/code1iners/ce1pers.git"
   },
   "license": "MIT",
   "author": "__coma__ <codeliner96@gmail.com>",
