@@ -62,16 +62,15 @@ const googleAuthUrl = googleLogin({
 
 ### 프로바이더별 필수 파라미터
 
+#### 네이버 (Naver)
+- `clientId`: 애플리케이션 클라이언트 아이디
+- `redirectUri`: 콜백 URL
+- `state`: CSRF 방지를 위한 상태 토큰
+
 #### 카카오 (Kakao)
 - `clientId`: REST API 키
 - `redirectUri`: 인가 코드를 받을 URI
 - `responseType` 응답 타입
-
-#### 네이버 (Naver)
-- `clientId`: 애플리케이션 클라이언트 아이디
-- `redirectUri`: 콜백 URL
-- `responseType` 응답 타입
-- `state`: CSRF 방지를 위한 상태 토큰
 
 #### 구글 (Google)
 - `clientId`: OAuth 2.0 클라이언트 ID
@@ -101,6 +100,25 @@ const googleAuthUrl = googleLogin({
 
 ### React에서 사용하기
 
+
+```tsx
+import { makeNaverLoginUrl } from '@ce1pers/social-login-redirect';
+
+function LoginButton() {
+  const handleKakaoLogin = () => {
+    const naverLoginUrl = makeNaverLoginUrl({
+      clientId: process.env.REACT_APP_KAKAO_CLIENT_ID,
+      redirectUri: `${window.location.origin}/auth/kakao/callback`
+    });
+
+    // Redirect to Naver login page.
+    window.location.href = naverLoginUrl;
+  };
+
+  return <button onClick={handleKakaoLogin}>Naver Login</button>;
+}
+```
+
 ```tsx
 import { kakaoLogin } from '@ce1pers/social-login-redirect';
 
@@ -112,7 +130,7 @@ function LoginButton() {
     });
   };
 
-  return <button onClick={handleKakaoLogin}>카카오 로그인</button>;
+  return <button onClick={handleKakaoLogin}>Kakao Login</button>;
 }
 ```
 
@@ -130,26 +148,26 @@ export default function LoginPage() {
     });
   };
 
-  return <button onClick={handleGoogleLogin}>구글 로그인</button>;
+  return <button onClick={handleGoogleLogin}>Google Login</button>;
 }
 ```
 
 ## 폴더 구조
 ```
 ├─ @ce1pers/social-login-redirect
-│  ├─ README.md
-│  ├─ eslint.config.ts
-│  ├─ index.ts
-│  ├─ package.json
-│  ├─ pnpm-lock.yaml
+│  ├─ README.md         # Guide document.
+│  ├─ eslint.config.ts  # eslint configurations file.
+│  ├─ index.ts          # Entry point
+│  ├─ package.json      # Package information.
+│  ├─ pnpm-lock.yaml    # Pnpm dependencies information.
 │  ├─ src
-│  │  ├─ apple-login.ts
-│  │  ├─ facebook-login.ts
-│  │  ├─ google-login.ts
-│  │  ├─ kakao-login.ts
-│  │  ├─ line-login.ts
-│  │  └─ naver-login.ts
-│  └─ tsconfig.json
+│  │  ├─ apple-login.ts     # Apple login features.
+│  │  ├─ facebook-login.ts  # Facebook login features.
+│  │  ├─ google-login.ts    # Google login features.
+│  │  ├─ kakao-login.ts     # Kakao login features.
+│  │  ├─ line-login.ts      # Line login features.
+│  │  └─ naver-login.ts     # Naver login features
+│  └─ tsconfig.json     # TypeScript configurations file.
 ```
 
 ## 주의사항
