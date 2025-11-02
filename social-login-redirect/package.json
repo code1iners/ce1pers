@@ -1,6 +1,6 @@
 {
   "name": "@ce1pers/social-login-redirect",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Social login redirect helper.",
   "keywords": [
     "oauth",
