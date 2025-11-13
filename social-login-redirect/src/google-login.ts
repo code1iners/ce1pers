@@ -101,9 +101,15 @@ type Props = {
   prompt?: 'none' | 'consent' | 'select_account';
 };
 
-export const makeGoogleLoginUrl = (props: Props) => {
+export const makeGoogleLoginUrl = ({
+  response_type = 'code',
+  ...rest
+}: Props) => {
   /** 승인 매개변수 설정 (Approval request parameters). */
-  const params = new URLSearchParams(props);
+  const params = new URLSearchParams({
+    response_type,
+    ...rest,
+  });
 
   // params.set('service', service);
   // params.set('o2v', o2v);
