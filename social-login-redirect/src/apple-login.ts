@@ -111,8 +111,7 @@ export const makeAppleLoginUrl = ({
  * 브라우저를 Apple 로그인 페이지로 리다이렉트합니다.
  * (Redirects the browser to the Apple login page.)
  *
- * @param props - Apple 로그인에 필요한 파라미터
- * (@param props - Parameters required for Apple login)
+ * @param props - Apple 로그인에 필요한 파라미터 (Parameters required for Apple login)
  *
  * @example
  * ```typescript
