@@ -28,31 +28,6 @@ type Props = {
 const NAVER_LOGIN_URL = 'https://nid.naver.com/oauth2.0/authorize';
 
 /**
- * 네이버 로그인 리다이렉트. (Naver login redirect.)
- *
- * 브라우저를 네이버 로그인 페이지로 리다이렉트합니다.
- * (Redirects the browser to the Naver login page.)
- *
- * @param props - 네이버 로그인에 필요한 파라미터
- *
- * @example
- * ```typescript
- * naverLogin({
- *   clientId: 'YOUR_CLIENT_ID',
- *   redirectUri: 'https://example.com/callback',
- *   state: 'random-state-token'
- * });
- * ```
- */
-export const naverLogin = ({ clientId, redirectUri, state }: Props) => {
-  // Generate Naver login URL.
-  const url = makeNaverLoginUrl({ clientId, redirectUri, state });
-
-  // Redirect to Naver login page.
-  window.location.href = url;
-};
-
-/**
  * 네이버 로그인 URL 생성. (Create Naver login URL.)
  *
  * 네이버 OAuth 2.0 인증을 위한 URL을 생성합니다.
@@ -79,4 +54,29 @@ export const makeNaverLoginUrl = ({ clientId, redirectUri, state }: Props) => {
   params.append('state', state);
 
   return `${NAVER_LOGIN_URL}?${params.toString()}`;
+};
+
+/**
+ * 네이버 로그인 리다이렉트. (Naver login redirect.)
+ *
+ * 브라우저를 네이버 로그인 페이지로 리다이렉트합니다.
+ * (Redirects the browser to the Naver login page.)
+ *
+ * @param props - 네이버 로그인에 필요한 파라미터
+ *
+ * @example
+ * ```typescript
+ * naverLogin({
+ *   clientId: 'YOUR_CLIENT_ID',
+ *   redirectUri: 'https://example.com/callback',
+ *   state: 'random-state-token'
+ * });
+ * ```
+ */
+export const naverLogin = ({ clientId, redirectUri, state }: Props) => {
+  // Generate Naver login URL.
+  const url = makeNaverLoginUrl({ clientId, redirectUri, state });
+
+  // Redirect to Naver login page.
+  window.location.href = url;
 };
