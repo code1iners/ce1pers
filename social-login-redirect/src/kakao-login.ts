@@ -1,5 +1,3 @@
-const KAKAO_LOGIN_URL = 'https://kauth.kakao.com/oauth/authorize';
-
 type Props = {
   /**
    * 필수
@@ -123,6 +121,29 @@ type Props = {
   nonce?: string;
 };
 
+/**
+ * 카카오 로그인 요청 URL. (Kakao login request URL.)
+ */
+const KAKAO_LOGIN_URL = 'https://kauth.kakao.com/oauth/authorize';
+
+/**
+ * 카카오 로그인 URL 생성. (Create Kakao login URL.)
+ *
+ * 카카오 OAuth 2.0 인증을 위한 URL을 생성합니다.
+ * (Generates a URL for Kakao OAuth 2.0 authentication.)
+ *
+ * @param param0
+ * @returns 카카오 로그인 페이지 URL ('https://kauth.kakao.com/oauth/authorize?client_id=...')
+ *
+ * @example
+ * ```typescript
+ * const url = makeKakaoLoginUrl({
+ *   client_id: 'YOUR_CLIENT_ID',
+ *   redirect_uri: 'https://example.com/callback',
+ *   state: 'random-state-token'
+ * });
+ * ```
+ */
 export const makeKakaoLoginUrl = ({
   response_type = 'code',
   ...rest
@@ -135,6 +156,23 @@ export const makeKakaoLoginUrl = ({
   return `${KAKAO_LOGIN_URL}?${params.toString()}`;
 };
 
+/**
+ * 카카오 로그인 리다이렉트. (Kakao login redirect.)
+ *
+ * 브라우저를 카카오 로그인 페이지로 리다이렉트합니다.
+ * (Redirects the browser to the Kakao login page.)
+ *
+ * @param props
+ *
+ * @example
+ * ```typescript
+ * kakaoLogin({
+ *   client_id: 'YOUR_CLIENT_ID',
+ *   redirect_uri: 'https://example.com/callback',
+ *   state: 'random-state-token'
+ * });
+ * ```
+ */
 export const kakaoLogin = (props: Props) => {
   // Generate Kakao login URL.
   const url = makeKakaoLoginUrl(props);
