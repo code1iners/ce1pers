@@ -1,4 +1,4 @@
-import type { MakeRandomKeyOptions } from "./types";
+import type { MakeRandomKeyOptions } from './types';
 
 /**
  * Generates a 5-digit random key.
@@ -38,6 +38,14 @@ export const makeRandomKeyWithLength = (length: number): string => {
 
 /**
  * Make random key.
+ *
+ * @example
+ * ```javascript
+ * import { generate } from "@ce1pers/random-helpers";
+ *
+ * const key1 = generate();
+ * console.log(key1); // Example: "k3j5h2b9q1"  (10 digits random key)
+ * ```
  */
 export const generate = (options?: MakeRandomKeyOptions) => {
   if (!options) return generateTenDigitsRandomKey();

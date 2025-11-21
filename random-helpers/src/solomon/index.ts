@@ -1,5 +1,14 @@
 /**
  * Pick one of them.
+ *
+ * @example
+ * ```javascript
+ * import { pick } from "@ce1pers/random-helpers";
+ *
+ * const items = [1, 2, 3, 4, 5];
+ * const [ok, picked] = pick(items);
+ * console.log(ok, picked); // Example: true 2
+ * ```
  */
 export const pick = <T>(items: T[]): [boolean, T | undefined] => {
   try {
