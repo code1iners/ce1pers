@@ -13,9 +13,6 @@ Collection of react hook for Javascript side application or framework.
 |useWindow|Useful window helpers|[useWindow](https://github.com/code1iners/ce1pers/tree/main/useWindow)|[@ce1pers/use-window](https://www.npmjs.com/package/@ce1pers/use-window)| React, * | Typescript |
 |usePassword|Useful Password helpers|[usePassword](https://github.com/code1iners/ce1pers/tree/main/usePassword)|[@ce1pers/use-password](https://www.npmjs.com/package/@ce1pers/use-password)|*|Javascript & Typescript|
 |usePage|Pagination helper|[usePage](https://github.com/code1iners/ce1pers/tree/main/usePage)|[@ce1pers/use-page](https://www.npmjs.com/package/@ce1pers/use-page)|*|Javascript & Typescript|
-|useImage|Access file in device|[useImage](https://github.com/code1iners/ce1pers/tree/main/useImage)| [@ce1pers/use-image](https://www.npmjs.com/package/@ce1pers/use-image)| React Native| Javascript |
-|useScreen|Set device orientation|[useScreen](https://github.com/code1iners/ce1pers/tree/main/useScreen)|[@ce1pers/use-screen](https://www.npmjs.com/package/@ce1pers/use-screen)| React Native | Javascript |
-| useResource | Preload app's resources |[useResource](https://github.com/code1iners/ce1pers/tree/main/useResource)|[@ce1pers/use-resource](https://www.npmjs.com/package/@ce1pers/use-resource)| React Native | Javascript |
 
 ## Helpers
 
