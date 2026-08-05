@@ -39,6 +39,17 @@ const merged = cn('px-2 py-1', 'px-4');
 // => 'py-1 px-4' (마지막 px-4가 우선)
 ```
 
+### 클래스 문자열 조합
+
+```typescript
+import { clazz } from '@ce1pers/style-helpers';
+
+const className = clazz('button', 'button-primary');
+// => 'button button-primary'
+```
+
+`@ce1pers/use-class`의 `clazz` API는 이 패키지에서 계속 제공합니다.
+
 ### 조건부 클래스
 
 ```typescript

@@ -130,5 +130,8 @@ dist
 .pnp.*
 
 test/
+!password-helpers/test/
+!password-helpers/test/*.test.js
+!password-helpers/test/*.test.ts
 
 .DS_Store

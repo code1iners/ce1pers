@@ -51,90 +51,55 @@ export const objectArraySorter = <T = any>(
   }
 };
 
-/**
- * 중복되지 않는 조합에 대한 모든 경우의 수를 가져옵니다.
- * 조합은 서로 다른 n개의 원소를 가지고 순서에 상관없이 r개의 원소를 선택하는 것이다.
-
- * Input: [1, 2, 3]
- * Output: [ [1, 2], [1, 3], [2, 3] ]
- */
-export const getCombinations = <T>(arr: T[], num: number) => {
-  const results: T[][] = [];
-
-  // nC1 이며, 1이면 의미 없기때문에 바로 반환한다.
-  if (num === 1) return arr.map((v) => [v]);
-
-  arr.forEach((fixed, index, origin) => {
-    // 조합에서는 값 순서에 상관없이 중복이 되면 안되기 때문에 현재값 이후의 배열들만 추출한다.
-    const rest = origin.slice(index + 1);
-
-    // 나머지 배열을 기준으로 다시 조합을 실시한다.
-    // 기준값(fixed)이 있기 때문에 선택하려는 개수에서 - 1 을 해준다.
-    const combinations = getCombinations(rest, num - 1);
-
-    // 기준값(fixed)에 돌아온 조합(combinations)을 붙인다.
-    const attached = combinations.map((v) => [fixed, ...v]);
-
-    // 붙인 값을 결과 값에 넣어준다.
-    results.push(...attached);
-  });
-
-  return results;
-};
+/** 버블 정렬 입력값. */
+interface BubbleInput {
+  /** 정렬할 숫자 배열. */
+  array: number[];
+  /** 이전 useSort 구현의 재귀 인자와의 타입 호환성을 위한 선택값. */
+  index?: number;
+  /** 정렬 방향. */
+  order?: "ascending" | "descending";
+}
 
 /**
- * 중복을 허용하는 순열에 대한 모든 경우의 수를 가져옵니다.
- * 순열은 서로 다른 n개의 원소를 가지고 중복 없이 순서에 상관있게 r개의 원소를 선택 혹은 나열 하는것이다.
-
- * Input: [1, 2, 3]
- * Output: [ [1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2] ]
+ * Sorts a number array without mutating the caller's input.
  */
-export const getPermutations = <T>(arr: T[], num: number) => {
-  const results: T[][] = [];
+export const bubble = ({
+  array,
+  // `index` was an internal recursion argument in useSort; keep accepting it
+  // so existing callers compile while the iterative implementation ignores it.
+  index: _index,
+  order = "ascending",
+}: BubbleInput): number[] => {
+  /** 입력 배열의 변경을 막기 위한 복사본. */
+  const result = [...array];
 
-  // nP1 이며, 1이면 의미 없기때문에 바로 반환한다.
-  if (num === 1) return arr.map((v) => [v]);
+  // 인접한 값을 끝에서부터 확정해 빈 배열과 단일 배열도 종료시킨다.
+  for (let end = result.length - 1; end > 0; end -= 1) {
+    /** 현재 순회에서 교환이 발생했는지 여부. */
+    let hasSwapped = false;
 
-  arr.forEach((fixed, index, origin) => {
-    // 순열에서는 조합과 달리 순서만 바뀌면 중복이 아니기때문에 기준값을 제외한 나머지 배열을 넣어준다.
-    const rest = [...origin.slice(0, index), ...origin.slice(index + 1)];
+    for (let index = 0; index < end; index += 1) {
+      /** 현재 비교값. */
+      const currentValue = result[index];
+      /** 다음 비교값. */
+      const nextValue = result[index + 1];
+      /** 현재 정렬 방향에서 값을 교환해야 하는지 여부. */
+      const shouldSwap =
+        order === "descending"
+          ? currentValue < nextValue
+          : currentValue > nextValue;
 
-    // 나머지 배열을 기준으로 다시 순열을 구한다.
-    // 기준값(fixed)이 있기 때문에 선택하려는 개수에서 - 1 을 해준다.
-    const permutations = getPermutations(rest, num - 1);
+      if (!shouldSwap) continue;
 
-    // 기준값(fixed)에 순열(permutations)을 붙인다.
-    const attached = permutations.map((v) => [fixed, ...v]);
+      result[index] = nextValue;
+      result[index + 1] = currentValue;
+      hasSwapped = true;
+    }
 
-    // 붙인 값을 결과 값에 넣어준다.
-    results.push(...attached);
-  });
+    // 이미 정렬된 배열은 남은 순회를 생략한다.
+    if (!hasSwapped) break;
+  }
 
-  return results;
-};
-
-/**
- * 중복순열에 대한 모든 경우의 수를 가져옵니다.
- * 중복순열은 서로 다른 n개의 원소를 가지고 중복을 허용하여 r개의 원소를 선택 혹은 나열 하는것이다.
- * (중복을 허용한다는건 본인 숫자의 중복을 의미한다.)
-
- * Input: [1, 2, 3]
- * Output: [ [1, 1], [1, 2], [1, 3], [2, 1], [2, 2], [2, 3], [3, 1], [3, 2], [3, 3] ]
- */
-export const getPermutationsWithSelf = <T>(arr: T[], num: number) => {
-  const results: T[][] = [];
-  if (num === 1) return arr.map((v) => [v]);
-
-  arr.forEach((fixed, index, origin) => {
-    // 기준값(fixed)이 있기 때문에 선택하려는 개수에서 - 1 을 해준다.
-    const permutations = getPermutations(origin, num - 1);
-
-    // 기준값(fixed)에 순열(permutations)을 붙인다.
-    const attached = permutations.map((v) => [fixed, ...v]);
-
-    // 붙인 값을 결과 값에 넣어준다.
-    results.push(...attached);
-  });
-
-  return results;
+  return result;
 };

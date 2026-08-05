@@ -1,7 +1,12 @@
 export { deleteById, deleteByIndex, deleteItem } from "./src/deleter";
 export { distincter } from "./src/distincter";
 export { objectArrayMerger } from "./src/merger";
-export { objectArraySorter } from "./src/sorter";
+export { bubble, objectArraySorter } from "./src/sorter";
+export {
+  getCombinations,
+  getPermutations,
+  getPermutationsWithSelf,
+} from "./src/combinatorics";
 
 export {
   DeleteItemByIdExtraOptionsType,

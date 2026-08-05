@@ -1,0 +1,38 @@
+{
+  "name": "@ce1pers/viewport-helpers",
+  "version": "1.4.2",
+  "description": "Simple web application window screen hook.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "deploy": "npm run build && npm publish --access public",
+    "test": "npm run build && node --test src/viewport-helpers.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code1iners/ce1pers.git"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "window",
+    "screen"
+  ],
+  "author": "Codeliner <codeliner96@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/code1iners/ce1pers/issues"
+  },
+  "homepage": "https://github.com/code1iners/ce1pers#readme",
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "nodemon": "^2.0.16",
+    "react": "^18.0.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.8.4"
+  }
+}

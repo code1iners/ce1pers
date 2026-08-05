@@ -26,6 +26,24 @@ const sorterResult = objectArraySorter({
 console.log(sorterResult); // [{ id: 1, name: 'user1' }, { id: 2, name: 'user2' }, { id: 3, name: 'user3' }]
 ```
 
+### Numeric sort and combinatorics examples.
+
+```javascript
+import {
+  bubble,
+  getCombinations,
+  getPermutations,
+  getPermutationsWithSelf,
+} from "@ce1pers/array-helpers";
+
+const sorted = bubble({ array: [3, 1, 2], order: "ascending" });
+const combinations = getCombinations([1, 2, 3], 2);
+const permutations = getPermutations([1, 2, 3], 2);
+const repeatedPermutations = getPermutationsWithSelf([1, 2], 2);
+```
+
+`@ce1pers/use-array`와 `@ce1pers/use-sort`의 API는 이 패키지로 이동했습니다.
+
 ### Merger example.
 
 ```javascript
