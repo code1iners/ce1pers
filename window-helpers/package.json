@@ -34,7 +34,10 @@
     "url": "https://github.com/code1iners/ce1pers/issues"
   },
   "homepage": "https://github.com/code1iners/ce1pers#readme",
+  "engines": {
+    "node": "^22.21.0 || >=24.0.0"
+  },
   "devDependencies": {
-    "typescript": "^4.8.4"
+    "typescript": "^5.9.3"
   }
 }

@@ -33,5 +33,5 @@ const [ok, item] = pick(["a", "b", "c"]);
 ## 검증
 
 ```bash
-npm run build
+npm test
 ```

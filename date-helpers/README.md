@@ -52,5 +52,5 @@ const calendar = makeCalendar(2022, 11);
 ## 검증
 
 ```bash
-npm run build
+npm test
 ```

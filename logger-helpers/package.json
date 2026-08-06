@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist && tsc",
+    "test": "npm run build && node --test src/logger-helpers.test.js",
     "publish": "npm run build && npm publish --access public"
   },
   "keywords": [
@@ -18,7 +19,10 @@
   ],
   "author": "__coma__ <codeliner96@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "^22.21.0 || >=24.0.0"
+  },
   "devDependencies": {
-    "typescript": "^4.8.4"
+    "typescript": "^5.9.3"
   }
 }

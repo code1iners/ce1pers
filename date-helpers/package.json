@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node -e ts ./test/index.spec.ts",
     "build": "rm -rf dist && tsc",
+    "test": "npm run build && node --test src/date-helpers.test.js",
     "deploy": "npm run build && npm publish --access public"
   },
   "keywords": [
@@ -21,10 +22,10 @@
   "author": "__coma__ <codeliner96@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^17.0.17",
-    "nodemon": "^2.0.20",
-    "ts-node": "^10.5.0",
-    "typescript": "^4.8.4"
+    "@types/node": "^24.0.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,10 @@
     "url": "https://github.com/code1iners/celpers-js/issues"
   },
   "homepage": "https://github.com/code1iners/celpers-js#readme",
+  "engines": {
+    "node": "^22.21.0 || >=24.0.0"
+  },
   "dependencies": {
-    "moment": "^2.29.4"
+    "moment": "^2.30.1"
   }
 }

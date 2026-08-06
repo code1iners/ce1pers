@@ -44,5 +44,5 @@ dbugger(input);
 ## 검증
 
 ```bash
-npm run build
+npm test
 ```

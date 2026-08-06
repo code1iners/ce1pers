@@ -29,15 +29,20 @@
 
 `저장소 버전`은 각 `package.json`, `npm latest`는 2026-08-06 registry 조회 기준입니다. 불일치가 발생하면 [현재 미구현 과제](./docs/unimplemented/current-unimplemented.md)에서 관리합니다.
 
+## 개발 런타임
+
+패키지 개발·검증과 공개 패키지 소비자는 Node.js `^22.21.0 || >=24.0.0`을 기준으로 합니다. 이 기준은 각 패키지의 `engines.node`에 선언되어 있습니다.
+
 ## 내부 템플릿
 
 `library-template`은 현재 npm에 발행되지 않고 공개 패키지 색인에 포함하지 않는 내부 TypeScript library template입니다. 공개 패키지로 전환하려면 별도 공개 범위 결정과 registry 절차가 필요합니다.
 
 ## 공통 검증
 
-각 패키지 디렉터리에서 지원하는 검증 명령은 패키지 README에 적습니다. 전체 문서 변경 후에는 다음을 실행합니다.
+각 패키지 디렉터리에서 지원하는 검증 명령은 패키지 README에 적습니다. `verify-packages.mjs`는 의존성·소스·빌드 설정 변경 후 패키지별 검증 명령을 빠뜨리지 않도록 실행하는 저장소 공통 회귀 게이트입니다. clean install, audit, tarball, 브라우저 검증은 별도로 수행합니다.
 
 ```bash
 git diff --check
 rg -n "TODO|FIXME" README.md docs */README.md
+node scripts/verify-packages.mjs
 ```

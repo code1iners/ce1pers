@@ -8,6 +8,9 @@
     "typescript"
   ],
   "homepage": "https://github.com/code1iners/ce1pers#readme",
+  "engines": {
+    "node": "^22.21.0 || >=24.0.0"
+  },
   "bugs": {
     "url": "https://github.com/code1iners/ce1pers/issues"
   },
@@ -29,14 +32,14 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.0",
-    "eslint": "^9.39.0",
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
     "globals": "^16.5.0",
-    "jiti": "^2.6.1",
+    "jiti": "^2.7.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.2"
+    "typescript-eslint": "^8.66.0"
   }
 }

@@ -42,5 +42,5 @@ kebabize(text); // "naming-convention-test"
 ## 검증
 
 ```bash
-npm run build
+npm test
 ```
