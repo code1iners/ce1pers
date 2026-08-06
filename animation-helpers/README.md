@@ -1,69 +1,48 @@
 # @ce1pers/animation-helpers
 
-Collection of various useful animation helper functions.
+브라우저 DOM에 클릭 위치를 기준으로 회전하는 점 효과를 추가하는 helper입니다.
 
-## Installation
+## 설치
 
-##### npm
-
-`npm i @ce1pers/animation-helpers`
-
-##### yarn
-
-`yarn add @ce1pers/animation-helpers`
-
-## References
-
-- [With React](https://main--cosmic-dango-4b1eee.netlify.app/) - [Source Code](https://github.com/code1iners/use-animation-sample-react)
-
-## Usage
-
-### Add styles by CDN (Required).
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    ...
-    <!-- add this code. -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.statically.io/gh/code1iners/ce1pers-content-provider-gulp/v0.0.0/dist/mouse-click-effects/index.min.css"
-    />
-    ...
-  </head>
-  <body>
-    ...
-  </body>
-</html>
+```bash
+npm install @ce1pers/animation-helpers
 ```
 
-### React source code.
+## 공개 API
 
-```javascript
-import { useEffect } from "react";
+### `makeRotateEffect(input)`
+
+```ts
+declare function makeRotateEffect(input: {
+  x: number;
+  y: number;
+  dotColor?: string;
+}): void;
+```
+
+`document.body`에 효과 DOM을 추가하고 약 200ms 뒤 제거합니다. 브라우저 DOM과 아래 CSS 클래스가 필요하며 React나 Vue 자체에는 의존하지 않습니다.
+
+```ts
 import { makeRotateEffect } from "@ce1pers/animation-helpers";
-import "./App.css";
 
-function App() {
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) =>
-      makeRotateEffect({
-        x: e.clientX,
-        y: e.clientY,
-        dotColor: "rgb(26, 188, 156)",
-      });
-
-    document.addEventListener("click", handleClick);
-
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, []);
-
-  return <div className="App">Hello Use Animation</div>;
-}
-
-export default App;
+document.addEventListener("click", (event) => {
+  makeRotateEffect({
+    x: event.clientX,
+    y: event.clientY,
+    dotColor: "rgb(26, 188, 156)",
+  });
+});
 ```
+
+효과에 필요한 CSS는 [content provider 예제](https://cdn.statically.io/gh/code1iners/ce1pers-content-provider-gulp/v0.0.0/dist/mouse-click-effects/index.min.css)를 애플리케이션에 포함해야 합니다.
+
+## 검증
+
+```bash
+npm run build
+npm test
+```
+
+## 관련 문서
+
+- [저장소 문서 지도](../docs/README.md)

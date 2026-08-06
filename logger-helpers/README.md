@@ -1,63 +1,48 @@
-
 # @ce1pers/logger-helpers
 
-Logger helpers with typescript.
+`console` 메서드와 날짜·매개변수 표시를 조합해 debug 로그를 출력하는 helper입니다.
 
-## Installation
+## 설치
 
-##### npm
-
-`npm i @ce1pers/logger-helpers`
-
-##### yarn
-
-`yarn add @ce1pers/logger-helpers`
-
-## Usage
-
-```javascript
-// Import hook.
-import { dbugger } from "@ce1pers/logger-helpers";
-
-dbugger({
-  title: "Logger helper",
-  flag: "Debug flag",
-  description: "Sexy logger.",
-  parameters: { name: "codeliner", hobby: "coding" },
-});
-
-/*
-Output is..
-[2022-10-05 23:56:50|Logger helper|Debug flag] Sexy logger.
-{name: 'codeliner', hobby: 'coding'}
-*/
+```bash
+npm install @ce1pers/logger-helpers
 ```
 
-## Advanced
+## 공개 API
 
-Recommended this way when your deployed application mode is production.
+### `dbugger(input)`
 
-`*.utils.js` : A utility module file.
-```javascript
-import { dbugger, DebugInput } from "@ce1pers/logger-helpers";
+```ts
+interface DebugInput {
+  title: string;
+  description?: string;
+  parameters?: any;
+  parametersStyle?: "string" | "object";
+  debugLevel?: "debug" | "info" | "warning" | "error";
+  includeDateTime?: boolean;
+  flag?: string;
+}
 
-// Recommended with environment variable (e.g. process.env.NODE_ENV).
-const DEBUG_MODE = true;
+declare function dbugger(input: DebugInput): void;
+```
 
-export const debug = (inputs: DebugInput) => {
-  if (DEBUG_MODE) dbugger(inputs);
+`debugLevel`에 따라 `console.log`, `console.info`, `console.warn`, `console.error`를 선택합니다. 기본 level은 `debug`, 기본 `includeDateTime`은 `true`, 기본 `parametersStyle`은 `object`입니다. `DebugInput`과 `DebugLevel` 타입도 export합니다.
+
+```ts
+import { dbugger, type DebugInput } from "@ce1pers/logger-helpers";
+
+const input: DebugInput = {
+  title: "Logger helper",
+  description: "debug message",
+  debugLevel: "info",
+  parameters: { name: "codeliner" },
 };
+
+dbugger(input);
 ```
 
-`*.other.js` : Usage module file.
-```javascript
-import { debug } from "./*.utils.js";
+## 검증
 
-debug({
-  title: "Logger helper",
-  description: "Sexy logger.",
-  debugLevel: "debug",
-  flag: "Debug flag",
-  parameters: { name: "codeliner", hobby: "coding" },
-});
+```bash
+npm run build
 ```

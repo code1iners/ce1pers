@@ -1,48 +1,54 @@
 # @ce1pers/password-helpers
 
-Password generation helpers using the Web Crypto API.
+Web Crypto API의 `crypto.getRandomValues`를 사용해 설정한 문자 집합에서 password를 생성합니다.
 
-## Installation
+## 설치
 
-##### npm
+```bash
+npm install @ce1pers/password-helpers
+```
 
-`npm i @ce1pers/password-helpers`
+## 공개 API
 
-##### yarn
+### `usePassword(options)`
 
-`yarn add @ce1pers/password-helpers`
+```ts
+declare function usePassword(options: {
+  passwordLength?: number;
+  useNumbers: boolean;
+  useSymbols: boolean;
+  useLowercase: boolean;
+  useUppercase: boolean;
+}): {
+  generate():
+    | { ok: true; data: string }
+    | { ok: false; error: { code: string; message: string } };
+};
+```
 
-## Usage
+`passwordLength` 기본값은 `20`입니다. 네 가지 문자 옵션 중 하나 이상을 `true`로 설정해야 하며, Web Crypto API가 없는 환경에서는 실패 결과를 반환합니다.
 
-```javascript
-// Import library.
+```ts
 import { usePassword } from "@ce1pers/password-helpers";
 
-// Declare generation conditions when creating the helper.
-const passwordLength = 20;
-const useNumbers = true;
-const useSymbols = true;
-const useLowercase = false;
-const useUppercase = true;
-
 const { generate } = usePassword({
-  passwordLength,
-  useNumbers,
-  useSymbols,
-  useLowercase,
-  useUppercase,
+  passwordLength: 20,
+  useNumbers: true,
+  useSymbols: true,
+  useLowercase: true,
+  useUppercase: true,
 });
 
-// Generate the password.
-const { ok, data, error } = generate();
+const result = generate();
+if (result.ok) console.log(result.data);
+else console.error(result.error.code, result.error.message);
+```
 
-if (ok) {
-  console.log(data); // Randomly password data.
+주요 오류 코드는 잘못된 길이 `0001`, 문자 옵션 타입 오류 `0002`–`0005`, 문자 집합 미선택 `0006`, Web Crypto 미지원 `0007`입니다.
 
-  // Write you want process.
-} else {
-  console.warn(error); // Error code & message.
+## 검증
 
-  // Write you want process.
-}
+```bash
+npm run build
+npm test
 ```

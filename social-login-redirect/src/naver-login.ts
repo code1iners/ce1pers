@@ -60,12 +60,17 @@ const NAVER_LOGIN_URL = 'https://nid.naver.com/oauth2.0/authorize';
  */
 export const makeNaverLoginUrl = ({
   response_type = 'code',
-  ...rest
+  clientId,
+  redirectUri,
+  state,
 }: Props) => {
-  // 쿼리 파라미터 생성 (Create query parameters)
+  // 라이브러리 입력 이름을 네이버 OAuth wire parameter 이름으로 변환.
+  /** 네이버 인증 요청 query parameters. */
   const params = new URLSearchParams({
     response_type,
-    ...rest,
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    state,
   });
 
   // 네이버 로그인 URL 반환 (Return the complete Naver login URL with query parameters.)

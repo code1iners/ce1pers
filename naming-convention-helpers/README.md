@@ -1,45 +1,46 @@
 # @ce1pers/naming-convention-helpers
 
-Simple random helpers.
+문자열을 camel, pascal, snake, kebab convention으로 변환하고 현재 convention을 판별하는 helper입니다.
 
-## Installation
+## 설치
 
-##### npm
+```bash
+npm install @ce1pers/naming-convention-helpers
+```
 
-`npm i @ce1pers/naming-convention-helpers`
+## 공개 API
 
-##### yarn
+| API | 반환·동작 |
+| --- | --- |
+| `extractNamingConvention(text)` | `normal`, `camel`, `pascal`, `snake`, `kebab` 중 하나 또는 `undefined` |
+| `camelize(text, options?)` | camelCase 문자열. `options.delimiter`로 입력 구분자 지정 가능 |
+| `pascalize(text)` | PascalCase 문자열 |
+| `snakeize(text)` | snake_case 문자열 |
+| `kebabize(text)` | kebab-case 문자열 |
 
-`yarn add @ce1pers/naming-convention-helpers`
-
-## Usage
-
-```javascript
-// Import helper.
-import { 
-    extractNamingConvention,
-    camelize,
-    pascalize,
-    snakeize,
-    kebabize
+```ts
+import {
+  camelize,
+  extractNamingConvention,
+  kebabize,
+  pascalize,
+  snakeize,
 } from "@ce1pers/naming-convention-helpers";
 
-const TEST_TEXT = "naming convetion test message";
+const text = "naming convention test";
+extractNamingConvention(text); // "normal"
+camelize(text); // "namingConventionTest"
+pascalize(text); // "NamingConventionTest"
+snakeize(text); // "naming_convention_test"
+kebabize(text); // "naming-convention-test"
+```
 
-const convention = extractNamingConvention(TEST_TEXT);
-console.log("convention", convention); // Expected "normal" (Other types - "camel" | "pascal" | "kebab" | "snake")
+## 공개 타입
 
-const camelized = camelize(TEST_TEXT);
-console.log("camelized =>", camelized); // Expected "namingConventionTestMessage"
+`NamingConvention`을 export합니다.
 
-const pascalized = pascalize(TEST_TEXT);
-console.log("pascalized =>", pascalized); // Expected "NamingConventionTestMessage"
+## 검증
 
-const snaked = snakeize(TEST_TEXT);
-console.log("snaked =>", snaked); // Expected "naming_convention_test_message"
-
-const kebabed = kebabize(TEST_TEXT);
-console.log("kebabed =>", kebabed); // Expected "naming-convention-test-message"
-
-
+```bash
+npm run build
 ```

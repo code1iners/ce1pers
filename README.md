@@ -1,31 +1,43 @@
-# Ce1pers (Helpers)
+# Ce1pers
 
-Collection of react hook for Javascript side application or framework.
+독립적으로 배포되는 JavaScript·TypeScript helper 패키지 모음입니다. 각 패키지의 설치법과 공개 API는 해당 패키지 README가 기준입니다.
 
-## Packages
+## 문서
 
-|Hook|Description|Document|NPM|Framework|Language|
-| - | - | - | - | - | - |
-|animation-helpers|Collection of animation helpers|[animation-helpers](https://github.com/code1iners/ce1pers/tree/main/animation-helpers)|[@ce1pers/animation-helpers](https://www.npmjs.com/package/@ce1pers/animation-helpers)| React, Vue? | Typescript |
-|number-helpers|Collection of numeric helpers|[number-helpers](https://github.com/code1iners/ce1pers/tree/main/number-helpers)|[@ce1pers/number-helpers](https://www.npmjs.com/package/@ce1pers/number-helpers)| * | Typescript |
-|pagination-helpers|Pagination helpers|[pagination-helpers](https://github.com/code1iners/ce1pers/tree/main/pagination-helpers)|[@ce1pers/pagination-helpers](https://www.npmjs.com/package/@ce1pers/pagination-helpers)|*|Javascript & Typescript|
-|password-helpers|Secure password generation helpers|[password-helpers](https://github.com/code1iners/ce1pers/tree/main/password-helpers)|[@ce1pers/password-helpers](https://www.npmjs.com/package/@ce1pers/password-helpers)|*|Javascript & Typescript|
-|viewport-helpers|React viewport size helper|[viewport-helpers](https://github.com/code1iners/ce1pers/tree/main/viewport-helpers)|[@ce1pers/viewport-helpers](https://www.npmjs.com/package/@ce1pers/viewport-helpers)| React | Typescript |
+- [문서 지도와 source of truth 규칙](./docs/README.md)
+- [`use-*`에서 `*-helpers`로 이전](./docs/migrations/use-to-helpers.md)
+- [현재 미구현 과제](./docs/unimplemented/current-unimplemented.md)
 
-## Helpers
+## 공개 패키지
 
-|Name|Description|Document|NPM|Language|
-| - | - | - | - | - |
-|window-helpers|Useful Window Web APIs helpers|[window-helpers](https://github.com/code1iners/ce1pers/tree/main/window-helpers)|[@ce1pers/window-helpers](https://www.npmjs.com/package/@ce1pers/window-helpers)| Typescript |
-|logger-helpers|Useful Logger helpers|[logger-helpers](https://github.com/code1iners/ce1pers/tree/main/logger-helpers)|[@ce1pers/logger-helpers](https://www.npmjs.com/package/@ce1pers/logger-helpers)| Typescript |
-|storage-helpers|Browser storage helpers.|[storage-helpers](https://github.com/code1iners/ce1pers/tree/main/storage-helpers)|[@ce1pers/storage-helpers](https://www.npmjs.com/package/@ce1pers/storage-helpers)| Typescript |
-|date-helpers|Date or time helpers.|[date-helpers](https://github.com/code1iners/ce1pers/tree/main/date-helpers)|[@ce1pers/date-helpers](https://www.npmjs.com/package/@ce1pers/date-helpers)| Typescript |
-|random-helpers|Simple random helpers|[random-helpers](https://github.com/code1iners/ce1pers/tree/main/random-helpers)|[@ce1pers/random-helpers](https://www.npmjs.com/package/@ce1pers/random-helpers)| Typescript |
-|naming-convention-helpers|Naming convention convert helper|[naming-convention-helpers](https://github.com/code1iners/ce1pers/tree/main/naming-convention-helpers)|[@ce1pers/naming-convention-helpers](https://www.npmjs.com/package/@ce1pers/naming-convention-helpers)| Typescript |
-|array-helpers|Included simple array helpers|[array-helpers](https://github.com/code1iners/ce1pers/tree/main/array-helpers)|[@ce1pers/array-helpers](https://www.npmjs.com/package/@ce1pers/array-helpers)| TypeScript |
-|social-login-redirect|This helps to implement social login (redirect).|[social-login-redirect](https://github.com/code1iners/ce1pers/tree/main/social-login-redirect)|[@ce1pers/social-login-redirect](https://www.npmjs.com/package/@ce1pers/social-login-redirect)| TypeScript |
-|style-helpers|Simple style utility helper function provider|[style-helpers](https://github.com/code1iners/ce1pers/tree/main/style-helpers)|[@ce1pers/style-helpers](https://www.npmjs.com/package/@ce1pers/style-helpers)| TypeScript |
+| 패키지 | 목적 | 저장소 버전 | npm latest | 문서 | npm |
+| --- | --- | ---: | ---: | --- | --- |
+| `@ce1pers/animation-helpers` | DOM animation effect | 1.0.3 | 1.0.3 | [README](./animation-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/animation-helpers) |
+| `@ce1pers/array-helpers` | 배열 삭제·정렬·병합·조합·순열 | 1.3.0 | 1.3.0 | [README](./array-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/array-helpers) |
+| `@ce1pers/date-helpers` | 날짜·시간 변환과 달력 데이터 | 1.2.0 | 1.2.0 | [README](./date-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/date-helpers) |
+| `@ce1pers/logger-helpers` | console debug 출력 | 1.0.3 | 1.0.3 | [README](./logger-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/logger-helpers) |
+| `@ce1pers/naming-convention-helpers` | 문자열 naming convention 변환 | 1.0.0 | 1.0.0 | [README](./naming-convention-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/naming-convention-helpers) |
+| `@ce1pers/number-helpers` | 진법 변환 | 1.0.0 | 1.0.0 | [README](./number-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/number-helpers) |
+| `@ce1pers/pagination-helpers` | 메모리 배열 pagination 상태 | 1.8.0 | 1.8.0 | [README](./pagination-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/pagination-helpers) |
+| `@ce1pers/password-helpers` | Web Crypto 기반 password 생성 | 1.1.4 | 1.1.4 | [README](./password-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/password-helpers) |
+| `@ce1pers/random-helpers` | random key·number·item 생성 | 1.2.0 | 1.2.0 | [README](./random-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/random-helpers) |
+| `@ce1pers/social-login-redirect` | social login authorization URL·redirect | 1.0.5 | 1.0.5 | [README](./social-login-redirect/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/social-login-redirect) |
+| `@ce1pers/storage-helpers` | IndexedDB helper | 1.0.14 | 1.0.14 | [README](./storage-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/storage-helpers) |
+| `@ce1pers/style-helpers` | class name 조합·Tailwind 병합 | 1.0.2 | 1.0.2 | [README](./style-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/style-helpers) |
+| `@ce1pers/viewport-helpers` | React viewport size hook | 1.4.2 | 1.4.2 | [README](./viewport-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/viewport-helpers) |
+| `@ce1pers/window-helpers` | popup·window messaging API | 1.1.9 | 1.1.8 | [README](./window-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/window-helpers) |
 
-## Migration
+`저장소 버전`은 각 `package.json`, `npm latest`는 2026-08-06 registry 조회 기준입니다. local/npm 차이는 [현재 미구현 과제](./docs/unimplemented/current-unimplemented.md)에서 관리합니다.
 
-`use*` 프로젝트의 공개 API 이전 표는 [docs/package-migration.md](./docs/package-migration.md)에서 확인할 수 있습니다.
+## 내부 템플릿
+
+`library-template`은 현재 npm에 발행되지 않고 공개 패키지 색인에 포함하지 않는 내부 TypeScript library template입니다. 공개 패키지로 전환하려면 별도 공개 범위 결정과 registry 절차가 필요합니다.
+
+## 공통 검증
+
+각 패키지 디렉터리에서 지원하는 검증 명령은 패키지 README에 적습니다. 전체 문서 변경 후에는 다음을 실행합니다.
+
+```bash
+git diff --check
+rg -n "TODO|FIXME" README.md docs */README.md
+```

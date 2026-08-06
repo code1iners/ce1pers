@@ -1,42 +1,40 @@
 # @ce1pers/number-helpers
 
-Provide various useful numeric helper functions.
+10진수·2진수·8진수·16진수 사이를 변환하는 helper입니다.
 
-## Installation
+## 설치
 
-##### npm
+```bash
+npm install @ce1pers/number-helpers
+```
 
-`npm i @ce1pers/number-helpers`
+## 공개 API
 
-##### yarn
+| 방향 | API |
+| --- | --- |
+| 10진수 → | `decimalToBinary`, `decimalToOctal`, `decimalToHex` |
+| 2진수 → | `binaryToDecimal`, `binaryToOctal`, `binaryToHex` |
+| 16진수 → | `hexToDecimal`, `hexToOctal`, `hexToBinary` |
 
-`yarn add @ce1pers/number-helpers`
+10진수 입력은 `number`, 2진수·16진수 입력은 문자열이며 결과는 변환 방향에 따라 문자열 또는 숫자입니다. JavaScript의 `parseInt`와 `Number.prototype.toString` 규칙을 따릅니다.
 
-## Usage
-
-```javascript
-// Import library.
+```ts
 import {
-  decimalToHex,
-  decimalToBinary,
-  decimalToOctal,
   binaryToDecimal,
-  binaryToHex,
-  binaryToOctal,
-  hexToBinary,
+  decimalToBinary,
+  decimalToHex,
   hexToDecimal,
-  hexToOctal,
 } from "@ce1pers/number-helpers";
 
-console.log(decimalToHex(10)); // 'a'
-console.log(decimalToBinary(10)); // '1010'
-console.log(decimalToOctal(10)); // '12'
+decimalToHex(10); // "a"
+decimalToBinary(10); // "1010"
+binaryToDecimal("0010"); // 2
+hexToDecimal("a"); // 10
+```
 
-console.log(binaryToDecimal("0010")); // 2
-console.log(binaryToHex("1010")); // 'a'
-console.log(binaryToOctal("1000")); // '10'
+## 검증
 
-console.log(hexToBinary("a")); // '1010'
-console.log(hexToDecimal("a")); // 10
-console.log(hexToOctal("a")); // '12'
+```bash
+npm run build
+npm test
 ```

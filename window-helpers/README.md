@@ -1,60 +1,63 @@
 # @ce1pers/window-helpers
 
-Simple web application window screen hook.
+브라우저 popup과 `postMessage` 통신을 제어하는 vanilla JavaScript helper입니다. React hook이 아닙니다.
 
-## Installation
+## 설치
 
-##### npm
+```bash
+npm install @ce1pers/window-helpers
+```
 
-`npm i @ce1pers/window-helpers`
+## 공개 API
 
-##### yarn
+### `useWindow(inputs?)`
 
-`yarn add @ce1pers/window-helpers`
+`open`, message 송수신, source/target origin 상태, event listener 제어 메서드를 반환합니다.
 
-## Usage
+| 반환 API | 동작 |
+| --- | --- |
+| `open(input)` | `windowTarget`에 따라 현재 창 또는 새 browsing context를 열고 창 참조 반환 |
+| `sendMessage(input)` | `to: "targetOrigin" | "sourceOrigin"`에 따라 메시지 전송, 성공 여부 반환 |
+| `sendMessageToTargetOrigin`, `sendMessageToSourceOrigin` | 지정한 방향으로 `{ type, data }` 전송 |
+| `getWindow`, `getSourceOrigin`, `getTargetOrigin` | 현재 상태 조회 |
+| `setSourceOrigin`, `setTargetOrigin` | 현재 origin 상태 설정 |
+| `openDeepLink(url)` | 현재 창을 deep link로 이동 |
+| `subscribe`, `unsubscribe` | message·unload listener 등록·해제 |
 
-### Use Popup
+`open` 입력에는 `targetOrigin`이 필수이고 `windowTarget`, `width`, `height`, `left`, `top`, `options`, `isPopup`, `callback`을 선택적으로 전달합니다. `windowTarget` 기본값은 `_self`이므로 현재 창을 이동하며, 새 창이나 탭을 열려면 `_blank` 또는 재사용할 이름을 전달해야 합니다. `sendMessage`에는 `to`, `type`, `data`가 모두 필요합니다.
 
-- [Sample Page](https://codeliners-post-message-window-a.netlify.app/)
-- [Project A GitHub - Parent window](https://github.com/code1iners/hello-windows-post-message-a)
-- [Project B GitHub - Child window](https://github.com/code1iners/hello-windows-post-message-a)
-
-```javascript
-// Import hook.
+```ts
 import { useWindow } from "@ce1pers/window-helpers";
 
-// Declare use popup hook.
+function onMessageCallback(event: MessageEvent) {
+  if (event.origin !== "https://child.example.com") return;
+  // event.data를 애플리케이션 계약에 따라 검증합니다.
+}
 
-type SendMessageType = "connection" | "submit";
-
-const { open, sendMessage } = useWindow({
-  onMessageCallback,
-});
-const TARGET_URL = "http://localhost:5555";
-
-// Open new window as popup.
-open({
-  targetOrigin: TARGET_URL,
+const popup = useWindow({ onMessageCallback });
+popup.open({
+  targetOrigin: "https://child.example.com",
   windowTarget: "_blank",
-  callback: openPopupCallback,
+  isPopup: true,
   width: 400,
   height: 400,
 });
 
-setInterval(() => {
-  sendMessage<SendMessageType>({
-    to: "targetOrigin",
-    type: "connection",
-  });
-}, 1000);
+popup.sendMessage({
+  to: "targetOrigin",
+  type: "connection",
+  data: { source: "parent" },
+});
+```
 
-function onMessageCallback(event: MessageEvent) {
-    if (event.origin !== TARGET_URL) return;
-  // Write process what execute when received message from other window.
-}
+`targetOrigin`은 scheme과 host를 포함한 실제 origin으로 설정하고, 수신 측에서 `event.origin`을 검증해야 합니다. 이 패키지는 메시지 payload의 schema 검증을 제공하지 않습니다.
 
-function openPopupCallback() {
-  // Write process what you want when opened a new window.
-}
+## 공개 타입
+
+`OpenWindowInputs`, `SendMessageInputs`, `SendMessageToOriginInputs`, `UsePopupInputs`를 export합니다.
+
+## 검증
+
+```bash
+npm run build
 ```
