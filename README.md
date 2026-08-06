@@ -21,13 +21,13 @@
 | `@ce1pers/pagination-helpers` | 메모리 배열 pagination 상태 | 1.8.0 | 1.8.0 | [README](./pagination-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/pagination-helpers) |
 | `@ce1pers/password-helpers` | Web Crypto 기반 password 생성 | 1.1.4 | 1.1.4 | [README](./password-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/password-helpers) |
 | `@ce1pers/random-helpers` | random key·number·item 생성 | 1.2.0 | 1.2.0 | [README](./random-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/random-helpers) |
-| `@ce1pers/social-login-redirect` | social login authorization URL·redirect | 1.1.0 | 1.0.5 | [README](./social-login-redirect/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/social-login-redirect) |
+| `@ce1pers/social-login-redirect` | social login authorization URL·redirect | 1.1.0 | 1.1.0 | [README](./social-login-redirect/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/social-login-redirect) |
 | `@ce1pers/storage-helpers` | IndexedDB helper | 1.0.14 | 1.0.14 | [README](./storage-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/storage-helpers) |
 | `@ce1pers/style-helpers` | class name 조합·Tailwind 병합 | 1.0.2 | 1.0.2 | [README](./style-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/style-helpers) |
 | `@ce1pers/viewport-helpers` | React viewport size hook | 1.4.2 | 1.4.2 | [README](./viewport-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/viewport-helpers) |
-| `@ce1pers/window-helpers` | popup·window messaging API | 1.1.9 | 1.1.8 | [README](./window-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/window-helpers) |
+| `@ce1pers/window-helpers` | popup·window messaging API | 1.1.9 | 1.1.9 | [README](./window-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/window-helpers) |
 
-`저장소 버전`은 각 `package.json`, `npm latest`는 2026-08-06 registry 조회 기준입니다. local/npm 차이는 [현재 미구현 과제](./docs/unimplemented/current-unimplemented.md)에서 관리합니다.
+`저장소 버전`은 각 `package.json`, `npm latest`는 2026-08-06 registry 조회 기준입니다. 불일치가 발생하면 [현재 미구현 과제](./docs/unimplemented/current-unimplemented.md)에서 관리합니다.
 
 ## 내부 템플릿
 
