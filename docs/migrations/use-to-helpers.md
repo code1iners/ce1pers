@@ -8,7 +8,8 @@
 - 새 패키지 발행: 14개 패키지 모두 npm registry에 존재
 - 기존 패키지 deprecation: 아래 8개 패키지에 적용됨
 - 외부 registry 변경: 이 문서 작업과 별도로 관리
-- 예외: `@ce1pers/window-helpers`는 저장소 `1.1.9`, npm latest `1.1.8`이므로 발행 여부를 별도 결정해야 함
+- 예외: `@ce1pers/social-login-redirect`는 저장소 `1.1.0`, npm latest `1.0.5`이므로 LINE URL 수정 발행을 별도 진행해야 함
+- 예외: `@ce1pers/window-helpers`는 저장소 `1.1.9`, npm latest `1.1.8`이므로 CommonJS artifact 검증 후 발행을 별도 진행해야 함
 
 ## 이전 표
 

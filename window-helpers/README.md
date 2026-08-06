@@ -60,4 +60,5 @@ popup.sendMessage({
 
 ```bash
 npm run build
+npm test
 ```

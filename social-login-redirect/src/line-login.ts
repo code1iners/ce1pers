@@ -1,6 +1,6 @@
 type Props = {
   /**
-   * 필수
+   * 선택
    *
    * Line OAuth 버전.
    * (Line OAuth version.)
@@ -8,10 +8,10 @@ type Props = {
   version?: string;
 
   /**
-   * 필수
-   * (Required)
+   * 선택
+   * (Optional; defaults to `code`.)
    */
-  response_type: 'code';
+  response_type?: 'code';
 
   /**
    * 필수
@@ -26,8 +26,8 @@ type Props = {
   /**
    * 필수
    *
-   * `LINE Developers Console`에 등록된 콜백 URL을 URL 인코딩한 문자열입니다. 임의의 쿼리 파라미터를 추가할 수 있습니다.
-   * (A URL-encoded string of the callback URL registered on the `LINE Developers Console`. You can add any query parameter.)
+   * `LINE Developers Console`에 등록된 콜백 URL입니다. 임의의 쿼리 파라미터를 추가할 수 있습니다.
+   * (The callback URL registered on the `LINE Developers Console`. You can add any query parameter.)
    *
    * @link `LINE Developers Console` : https://developers.line.biz/console/
    */
@@ -83,7 +83,7 @@ type Props = {
    * @link `auto login` : https://developers.line.biz/en/docs/line-login/integrate-line-login/#authentication-process
    * @link `ID token` : https://developers.line.biz/en/docs/line-login/verify-id-token/#id-tokens
    */
-  prompt?: string;
+  prompt?: 'consent' | 'none' | 'login';
 
   /**
    * 선택
@@ -114,7 +114,7 @@ type Props = {
    *
    * @link `Add a LINE Official Account as a friend when logged in (add friend option` : https://developers.line.biz/en/docs/line-login/link-a-bot/
    */
-  bot_prompt?: string;
+  bot_prompt?: 'normal' | 'aggressive';
 
   /**
    * 선택
@@ -125,7 +125,7 @@ type Props = {
    * @link `Log in with QR code` : https://developers.line.biz/en/docs/line-login/integrate-line-login/#mail-or-qrcode-login
    * @link `Log in with email address` : https://developers.line.biz/en/docs/line-login/integrate-line-login/#mail-or-qrcode-login
    */
-  initial_amr_display?: string;
+  initial_amr_display?: 'lineqr';
 
   /**
    * 선택
@@ -186,7 +186,7 @@ type Props = {
    *
    * @link `Implement PKCE for LINE Login` : https://developers.line.biz/en/docs/line-login/integrate-pkce/#how-to-integrate-pkce
    */
-  code_challenge_method?: string;
+  code_challenge_method?: 'S256';
 
   /**
    * 선택
@@ -214,7 +214,7 @@ type Props = {
   response_mode?:
     | 'query'
     | 'form_post'
-    | 'query.jwt:'
+    | 'query.jwt'
     | 'form_post.jwt'
     | 'jwt';
 };
@@ -249,17 +249,18 @@ export const makeLineOAuthUrlByVersion = (version: string) =>
  * (@returns Line login page URL ('https://access.line.me/oauth2/v2.1/authorize?client_id=...'))
  */
 export const makeLineLoginUrl = (props: Props) => {
-  // Destructure props
-  // props 구조 분해
-  // (Destructure props)
-  const { version = 'v2.1' } = props;
+  /** LINE OAuth version and authorization request parameters. */
+  const { version = 'v2.1', response_type = 'code', ...parameters } = props;
 
-  // 제공된 파라미터로 URLSearchParams 객체 생성
-  // (Create URLSearchParams object with provided parameters)
+  /** LINE authorization request query parameters. */
   const params = new URLSearchParams();
 
-  // 버전에 따른 기본 Line OAuth URL 생성
-  // (Generate the base Line OAuth URL by version)
+  // Omit only undefined values so false and zero remain valid provider inputs.
+  for (const [key, value] of Object.entries({ response_type, ...parameters })) {
+    if (value !== undefined) params.set(key, String(value));
+  }
+
+  /** LINE OAuth authorization endpoint for the requested version. */
   const url = makeLineOAuthUrlByVersion(version);
 
   return `${url}/authorize?${params.toString()}`;

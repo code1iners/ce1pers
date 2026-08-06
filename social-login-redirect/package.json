@@ -1,6 +1,6 @@
 {
   "name": "@ce1pers/social-login-redirect",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Social login redirect helper.",
   "keywords": [
     "oauth",
@@ -21,6 +21,10 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "pnpm lint && rm -rf dist && tsc",
     "deploy": "npm run build && npm publish --access public",

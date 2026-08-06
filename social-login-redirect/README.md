@@ -19,7 +19,7 @@ npm install @ce1pers/social-login-redirect
 | `makeNaverLoginUrl`, `naverLogin` | 라이브러리 입력 필수 `clientId`, `redirectUri`, `state`; 선택 `response_type` |
 | `appleLogin` | `client_id`, `redirect_uri`, `nonce`, `response_mode`, `scope`, `state`; 선택 `response_type` |
 | `facebookLogin` | `client_id`, `redirect_uri`, `state`; 선택 `version`, `response_type`, `scope` |
-| `lineLogin` | `response_type`, `client_id`, `redirect_uri`, `state`, `scope`; `version`, `nonce`, `prompt`, `max_age`, `ui_locales`, `bot_prompt`, `initial_amr_display`, `switch_amr`, `disable_auto_login`, `disable_ios_auto_login`, `code_challenge`, `code_challenge_method`, `response_mode` 선택 |
+| `makeLineLoginUrl`, `lineLogin` | `client_id`, `redirect_uri`, `state`, `scope`; `response_type`는 `code` 기본값, `version`, `nonce`, `prompt`, `max_age`, `ui_locales`, `bot_prompt`, `initial_amr_display`, `switch_amr`, `disable_auto_login`, `disable_ios_auto_login`, `code_challenge`, `code_challenge_method`, `response_mode` 선택 |
 
 Provider마다 필드명이 다릅니다. Kakao·Google은 라이브러리 입력과 URL에서 `client_id`/`redirect_uri`를 사용하고, Naver는 라이브러리 입력으로 `clientId`/`redirectUri`를 받은 뒤 URL에서는 `client_id`/`redirect_uri`로 변환합니다.
 
@@ -29,6 +29,7 @@ Provider마다 필드명이 다릅니다. Kakao·Google은 라이브러리 입�
 import {
   googleLogin,
   makeKakaoLoginUrl,
+  makeLineLoginUrl,
   makeNaverLoginUrl,
 } from "@ce1pers/social-login-redirect";
 
@@ -44,6 +45,13 @@ const naverUrl = makeNaverLoginUrl({
   state: "random-state-value",
 });
 
+const lineUrl = makeLineLoginUrl({
+  client_id: "YOUR_LINE_CHANNEL_ID",
+  redirect_uri: "https://example.com/auth/line/callback",
+  state: "random-state-value",
+  scope: "profile openid email",
+});
+
 // URL을 직접 이동시키는 함수는 반환값이 없습니다.
 googleLogin({
   client_id: "YOUR_GOOGLE_CLIENT_ID",
@@ -53,11 +61,7 @@ googleLogin({
 });
 ```
 
-`redirect_uri`는 각 provider console에 등록한 값과 정확히 일치해야 합니다. `state`는 로그인 시도마다 예측할 수 없는 값으로 만들고 callback에서 원래 값과 비교해야 합니다. 이 라이브러리는 그 검증을 대신하지 않습니다.
-
-## 현재 미구현 제한
-
-현재 `makeLineLoginUrl`은 입력받은 provider 파라미터를 query string에 연결하지 않습니다. LINE 로그인을 사용하기 전 [현재 미구현 과제](../docs/unimplemented/current-unimplemented.md)를 확인하세요.
+`redirect_uri`는 각 provider console에 등록한 원본 callback URL을 전달하며, helper가 query string에 맞게 인코딩합니다. `state`는 로그인 시도마다 예측할 수 없는 값으로 만들고 callback에서 원래 값과 비교해야 합니다. 이 라이브러리는 state·PKCE 검증이나 token 교환을 대신하지 않습니다.
 
 ## 검증
 
