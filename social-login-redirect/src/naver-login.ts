@@ -1,3 +1,5 @@
+import { makeUrlWithQuery } from './query-serializer.js';
+
 /**
  * 네이버 로그인에 필요한 파라미터 타입
  * (Parameters required for Naver login)
@@ -65,16 +67,12 @@ export const makeNaverLoginUrl = ({
   state,
 }: Props) => {
   // 라이브러리 입력 이름을 네이버 OAuth wire parameter 이름으로 변환.
-  /** 네이버 인증 요청 query parameters. */
-  const params = new URLSearchParams({
+  return makeUrlWithQuery(NAVER_LOGIN_URL, {
     response_type,
     client_id: clientId,
     redirect_uri: redirectUri,
     state,
   });
-
-  // 네이버 로그인 URL 반환 (Return the complete Naver login URL with query parameters.)
-  return `${NAVER_LOGIN_URL}?${params.toString()}`;
 };
 
 /**
