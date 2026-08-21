@@ -23,3 +23,9 @@
 - `pnpm --dir social-login-redirect test` 12/12 통과, `pnpm --dir social-login-redirect exec tsc --noEmit`, `node scripts/verify-packages.mjs`, `git diff --check`가 통과했습니다. 저장소 전체 검증에서 `storage-helpers`의 기존 `MODULE_TYPELESS_PACKAGE_JSON` 경고가 출력되지만 검증은 통과했습니다.
 - 기존 `facebookLogin` redirect와 `index.ts` public export는 변경하지 않았습니다.
 - 브라우저 기반 live Facebook OAuth 인증과 실제 provider 수락 여부는 검증하지 않았습니다.
+
+### 2026-08-21 검토 업데이트
+
+- 커밋 `a216f3f`로 구현·테스트·티켓 기록을 반영했습니다.
+- `4571b25...a216f3f` 기준 Standards 리뷰에서 재현 가능한 문제를 찾지 못했습니다.
+- Spec 리뷰에서 새 구현의 누락·scope creep·잘못된 동작은 찾지 못했습니다. `makeFacebookLoginUrl`이 패키지 entrypoint에서 export되지 않는 기존 불일치는 확인했지만, 이 티켓의 기존 public export 유지 조건에 따라 변경하지 않았습니다.
