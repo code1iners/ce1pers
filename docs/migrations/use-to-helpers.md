@@ -7,7 +7,7 @@
 - 저장소 코드 이전: 완료
 - 새 패키지 발행: 14개 패키지 모두 npm registry에 존재
 - 기존 패키지 deprecation: 아래 8개 패키지에 적용됨
-- npm registry 반영: `@ce1pers/social-login-redirect@1.1.0`, `@ce1pers/window-helpers@1.1.9` 포함 완료
+- npm registry 반영: `@ce1pers/social-login-redirect@1.1.1`, `@ce1pers/window-helpers@1.1.9` 포함 완료
 
 ## 이전 표
 
