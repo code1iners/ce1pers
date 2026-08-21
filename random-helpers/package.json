@@ -29,8 +29,9 @@
     "dev": "nodemon --exec ts-node -e ts,json ./test/index.spec.ts"
   },
   "devDependencies": {
+    "@types/node": "^24.0.0",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
-    "typescript": "^6.0.3"
+    "typescript": "^5.9.3"
   }
 }

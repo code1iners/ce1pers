@@ -3,15 +3,36 @@ import { test } from "node:test";
 
 import * as publicApi from "../dist/index.js";
 import {
+  appleLogin,
+  facebookLogin,
   makeGoogleLoginUrl,
   makeKakaoLoginUrl,
   makeLineLoginUrl,
   makeNaverLoginUrl,
 } from "../dist/index.js";
-import { makeAppleLoginUrl } from "../dist/src/apple-login.js";
-import { makeFacebookLoginUrl } from "../dist/src/facebook-login.js";
 
 const MATRIX_STATE = "state-value&attempt=1";
+
+const captureLoginUrl = (login, input) => {
+  const previousWindow = globalThis.window;
+  const location = { href: "" };
+  globalThis.window = { location };
+
+  try {
+    login(input);
+    return location.href;
+  } finally {
+    if (previousWindow === undefined) {
+      delete globalThis.window;
+    } else {
+      globalThis.window = previousWindow;
+    }
+  }
+};
+
+const makeAppleRedirectUrl = (input) => captureLoginUrl(appleLogin, input);
+const makeFacebookRedirectUrl = (input) =>
+  captureLoginUrl(facebookLogin, input);
 
 const makeMatrixRedirectUri = (provider) =>
   `https://example.com/auth/${provider}/callback?source=matrix&return=%2Fdashboard`;
@@ -150,7 +171,7 @@ const providerMatrix = [
   },
   {
     name: "Apple",
-    makeUrl: makeAppleLoginUrl,
+    makeUrl: makeAppleRedirectUrl,
     input: {
       client_id: "client-id",
       redirect_uri: makeMatrixRedirectUri("apple"),
@@ -177,7 +198,7 @@ const providerMatrix = [
   },
   {
     name: "Facebook",
-    makeUrl: makeFacebookLoginUrl,
+    makeUrl: makeFacebookRedirectUrl,
     input: {
       client_id: "client-id",
       redirect_uri: makeMatrixRedirectUri("facebook"),
@@ -243,7 +264,7 @@ test("keeps the documented package export surface", () => {
 
 test("keeps a requested Facebook OAuth version in the endpoint path", () => {
   const url = new URL(
-    makeFacebookLoginUrl({
+    makeFacebookRedirectUrl({
       version: "v21.0",
       client_id: "client-id",
       redirect_uri: "https://example.com/auth/facebook/callback",
@@ -260,7 +281,7 @@ test("keeps a requested Facebook OAuth version in the endpoint path", () => {
 
 test("omits undefined Facebook optional inputs", () => {
   const url = new URL(
-    makeFacebookLoginUrl({
+    makeFacebookRedirectUrl({
       client_id: "client-id",
       redirect_uri: "https://example.com/auth/facebook/callback",
       state: "state-value",
@@ -275,7 +296,7 @@ test("omits undefined Facebook optional inputs", () => {
 
 test("omits undefined Apple inputs and preserves empty strings", () => {
   const url = new URL(
-    makeAppleLoginUrl({
+    makeAppleRedirectUrl({
       client_id: "client-id",
       redirect_uri: "https://example.com/auth/apple/callback",
       nonce: "",
@@ -331,7 +352,6 @@ test("omits undefined Kakao optional inputs and preserves empty strings", () => 
 });
 
 test("keeps a requested LINE OAuth version in the endpoint path", () => {
-  /** LINE authorization URL generated for an explicitly requested version. */
   const url = new URL(
     makeLineLoginUrl({
       version: "v2.0",

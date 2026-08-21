@@ -66,16 +66,16 @@ Status: ready-for-agent
 
 ## Testing Decisions
 
-- Test the highest existing seam: the public make*LoginUrl functions and their returned URLs. Tests should parse the returned URL and assert externally observable origin, pathname, and query parameters.
-- Cover all six provider URL builders: Google, Kakao, LINE, Naver, Apple, and Facebook.
+- Test the highest existing seam: the package-public make*LoginUrl functions where exported, plus existing *Login redirect functions for providers whose URL builders remain outside the package entrypoint. Tests should parse the returned or captured URL and assert externally observable origin, pathname, and query parameters.
+- Cover all six provider URL builder implementations through their package-public builder or existing login redirect seam: Google, Kakao, LINE, Naver, Apple, and Facebook.
 - For each provider, assert its endpoint or version path, required query names, and provider defaults that are part of the current public contract.
 - Keep a focused Naver mapping test that proves clientId and redirectUri become client_id and redirect_uri and that the camelCase names are not emitted.
 - Keep and extend the existing LINE value-preservation coverage for 0 and false, and add coverage that undefined is omitted while an empty string is preserved.
-- Include a redirect URI containing its own query string to verify URLSearchParams encoding at the public URL-builder seam.
+- Include a redirect URI containing its own query string to verify URLSearchParams encoding at the URL-builder seam.
 - Prefer assertions on parsed URL behavior over assertions about the existence, name, or call order of internal helpers. The internal common module is not a separate required test seam.
 - Do not add browser or live-provider authentication tests. The redirect side effect remains an existing provider responsibility, and the package does not perform callback or token flows.
 - Run the package's existing verification command, which builds after linting and then runs the Node test suite. Treat failures caused by the pre-existing dirty worktree or unrelated package changes separately from failures in this feature.
-- The current prior art is the package's Node built-in test suite, which imports the built public distribution and validates parsed LINE and Naver authorization URLs.
+- The current prior art is the package's Node built-in test suite, which imports the built public distribution and provider-module builders and validates parsed authorization URLs.
 
 ## Out of Scope
 

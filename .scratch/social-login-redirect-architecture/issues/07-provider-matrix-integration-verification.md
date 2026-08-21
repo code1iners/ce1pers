@@ -6,7 +6,7 @@
 
 **Status:** ready-for-human
 
-- [x] 6개 public URL builder의 origin, pathname, 기본값, query 이름을 parsed URL 기준으로 검증한다.
+- [x] 6개 provider URL builder 구현의 origin, pathname, 기본값, query 이름을 parsed URL 기준으로 검증한다.
 - [x] undefined 제외, false·0·빈 문자열 보존, redirect URI 내부 query encoding을 provider matrix에서 확인한다.
 - [x] 기존 public export와 *Login redirect 동작에 불필요한 변경이 없다.
 - [x] package README의 documented public behavior와 구현 결과가 일치한다.
