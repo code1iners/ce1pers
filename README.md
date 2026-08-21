@@ -21,7 +21,7 @@
 | `@ce1pers/pagination-helpers` | 메모리 배열 pagination 상태 | 1.8.0 | 1.8.0 | [README](./pagination-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/pagination-helpers) |
 | `@ce1pers/password-helpers` | Web Crypto 기반 password 생성 | 1.1.4 | 1.1.4 | [README](./password-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/password-helpers) |
 | `@ce1pers/random-helpers` | random key·number·item 생성 | 1.2.0 | 1.2.0 | [README](./random-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/random-helpers) |
-| `@ce1pers/social-login-redirect` | social login authorization URL·redirect | 1.1.0 | 1.1.0 | [README](./social-login-redirect/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/social-login-redirect) |
+| `@ce1pers/social-login-redirect` | social login authorization URL·redirect | 1.1.1 | 1.1.0 | [README](./social-login-redirect/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/social-login-redirect) |
 | `@ce1pers/storage-helpers` | IndexedDB helper | 1.0.14 | 1.0.14 | [README](./storage-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/storage-helpers) |
 | `@ce1pers/style-helpers` | class name 조합·Tailwind 병합 | 1.0.2 | 1.0.2 | [README](./style-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/style-helpers) |
 | `@ce1pers/viewport-helpers` | React viewport size hook | 1.4.2 | 1.4.2 | [README](./viewport-helpers/README.md) | [npm](https://www.npmjs.com/package/@ce1pers/viewport-helpers) |
