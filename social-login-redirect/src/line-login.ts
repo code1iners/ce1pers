@@ -1,3 +1,5 @@
+import { makeUrlWithQuery } from './query-serializer.js';
+
 type Props = {
   /**
    * 선택
@@ -252,18 +254,10 @@ export const makeLineLoginUrl = (props: Props) => {
   /** LINE OAuth version and authorization request parameters. */
   const { version = 'v2.1', response_type = 'code', ...parameters } = props;
 
-  /** LINE authorization request query parameters. */
-  const params = new URLSearchParams();
-
-  // Omit only undefined values so false and zero remain valid provider inputs.
-  for (const [key, value] of Object.entries({ response_type, ...parameters })) {
-    if (value !== undefined) params.set(key, String(value));
-  }
-
   /** LINE OAuth authorization endpoint for the requested version. */
-  const url = makeLineOAuthUrlByVersion(version);
+  const endpoint = `${makeLineOAuthUrlByVersion(version)}/authorize`;
 
-  return `${url}/authorize?${params.toString()}`;
+  return makeUrlWithQuery(endpoint, { response_type, ...parameters });
 };
 
 /**

@@ -16,8 +16,8 @@ test("builds a LINE authorization URL from required and optional inputs", () => 
       redirect_uri: redirectUri,
       state: "state-value",
       scope: "profile openid email",
-      nonce: "nonce-value",
-      prompt: "consent",
+      nonce: "",
+      prompt: undefined,
       max_age: 0,
       ui_locales: "ko-KR en-US",
       bot_prompt: "normal",
@@ -42,7 +42,28 @@ test("builds a LINE authorization URL from required and optional inputs", () => 
   assert.equal(url.searchParams.get("switch_amr"), "false");
   assert.equal(url.searchParams.get("disable_ios_auto_login"), "false");
   assert.equal(url.searchParams.get("response_mode"), "query.jwt");
+  assert.equal(url.searchParams.has("nonce"), true);
+  assert.equal(url.searchParams.get("nonce"), "");
+  assert.equal(url.searchParams.get("prompt"), null);
   assert.equal(url.searchParams.get("version"), null);
+});
+
+test("keeps a requested LINE OAuth version in the endpoint path", () => {
+  /** LINE authorization URL generated for an explicitly requested version. */
+  const url = new URL(
+    makeLineLoginUrl({
+      version: "v2.0",
+      client_id: "client-id",
+      redirect_uri: "https://example.com/auth/line/callback",
+      state: "state-value",
+      scope: "profile",
+    }),
+  );
+
+  assert.equal(url.origin, "https://access.line.me");
+  assert.equal(url.pathname, "/oauth2/v2.0/authorize");
+  assert.equal(url.searchParams.get("version"), null);
+  assert.equal(url.searchParams.get("response_type"), "code");
 });
 
 test("maps Naver inputs to provider query parameter names", () => {
