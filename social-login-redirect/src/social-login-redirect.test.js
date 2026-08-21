@@ -2,9 +2,58 @@ import { strict as assert } from "node:assert";
 import { test } from "node:test";
 
 import {
+  makeGoogleLoginUrl,
   makeLineLoginUrl,
   makeNaverLoginUrl,
 } from "../dist/index.js";
+
+test("builds a Google authorization URL from public inputs", () => {
+  const redirectUri =
+    "https://example.com/auth/google/callback?source=web&return=%2Fdashboard";
+  const url = new URL(
+    makeGoogleLoginUrl({
+      client_id: "client-id",
+      redirect_uri: redirectUri,
+      scope: "openid email profile",
+      state: "state-value&attempt=1",
+      access_type: "offline",
+      include_granted_scopes: "true",
+      enable_granular_consent: "false",
+      login_hint: "user@example.com",
+      prompt: "select_account",
+      response_type: undefined,
+    }),
+  );
+
+  assert.equal(url.origin, "https://accounts.google.com");
+  assert.equal(url.pathname, "/o/oauth2/v2/auth");
+  assert.equal(url.searchParams.get("response_type"), "code");
+  assert.equal(url.searchParams.get("client_id"), "client-id");
+  assert.equal(url.searchParams.get("redirect_uri"), redirectUri);
+  assert.equal(url.searchParams.get("scope"), "openid email profile");
+  assert.equal(url.searchParams.get("state"), "state-value&attempt=1");
+  assert.equal(url.searchParams.get("access_type"), "offline");
+  assert.equal(url.searchParams.get("include_granted_scopes"), "true");
+  assert.equal(url.searchParams.get("enable_granular_consent"), "false");
+  assert.equal(url.searchParams.get("login_hint"), "user@example.com");
+  assert.equal(url.searchParams.get("prompt"), "select_account");
+  assert.equal(url.searchParams.has("undefined"), false);
+});
+
+test("omits undefined Google optional inputs", () => {
+  const url = new URL(
+    makeGoogleLoginUrl({
+      client_id: "client-id",
+      redirect_uri: "https://example.com/auth/google/callback",
+      scope: "openid email",
+      state: undefined,
+      access_type: undefined,
+    }),
+  );
+
+  assert.equal(url.searchParams.has("state"), false);
+  assert.equal(url.searchParams.has("access_type"), false);
+});
 
 test("builds a LINE authorization URL from required and optional inputs", () => {
   /** LINE callback URL containing a query parameter. */

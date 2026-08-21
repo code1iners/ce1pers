@@ -1,3 +1,5 @@
+import { makeUrlWithQuery } from './query-serializer.js';
+
 const GOOGLE_LOGIN_URL = `https://accounts.google.com/o/oauth2/v2/auth`;
 
 /**
@@ -105,19 +107,7 @@ export const makeGoogleLoginUrl = ({
   response_type = 'code',
   ...rest
 }: Props) => {
-  /** 승인 매개변수 설정 (Approval request parameters). */
-  const params = new URLSearchParams({
-    response_type,
-    ...rest,
-  });
-
-  // params.set('service', service);
-  // params.set('o2v', o2v);
-  // params.set('flowName', flowName);
-
-  return `${GOOGLE_LOGIN_URL}?${params.toString()}`;
-
-  // window.location.href = `https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?${params.toString()}`;
+  return makeUrlWithQuery(GOOGLE_LOGIN_URL, { response_type, ...rest });
 };
 
 /**
