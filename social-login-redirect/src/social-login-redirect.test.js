@@ -7,6 +7,51 @@ import {
   makeLineLoginUrl,
   makeNaverLoginUrl,
 } from "../dist/index.js";
+import { makeAppleLoginUrl } from "../dist/src/apple-login.js";
+
+test("builds an Apple authorization URL with provider defaults", () => {
+  const redirectUri =
+    "https://example.com/auth/apple/callback?source=web&return=%2Fdashboard";
+  const url = new URL(
+    makeAppleLoginUrl({
+      client_id: "client-id",
+      redirect_uri: redirectUri,
+      nonce: "nonce-value",
+      response_mode: "form_post",
+      state: "state-value&attempt=1",
+    }),
+  );
+
+  assert.equal(url.origin, "https://appleid.apple.com");
+  assert.equal(url.pathname, "/auth/authorize");
+  assert.equal(url.searchParams.get("response_type"), "code");
+  assert.equal(url.searchParams.get("scope"), "name email");
+  assert.equal(url.searchParams.get("client_id"), "client-id");
+  assert.equal(url.searchParams.get("redirect_uri"), redirectUri);
+  assert.equal(url.searchParams.get("nonce"), "nonce-value");
+  assert.equal(url.searchParams.get("response_mode"), "form_post");
+  assert.equal(url.searchParams.get("state"), "state-value&attempt=1");
+});
+
+test("omits undefined Apple inputs and preserves empty strings", () => {
+  const url = new URL(
+    makeAppleLoginUrl({
+      client_id: "client-id",
+      redirect_uri: "https://example.com/auth/apple/callback",
+      nonce: "",
+      response_mode: undefined,
+      state: undefined,
+      scope: undefined,
+      response_type: undefined,
+    }),
+  );
+
+  assert.equal(url.searchParams.get("response_type"), "code");
+  assert.equal(url.searchParams.get("scope"), "name email");
+  assert.equal(url.searchParams.get("nonce"), "");
+  assert.equal(url.searchParams.has("response_mode"), false);
+  assert.equal(url.searchParams.has("state"), false);
+});
 
 test("builds a Google authorization URL from public inputs", () => {
   const redirectUri =

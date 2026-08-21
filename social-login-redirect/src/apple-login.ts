@@ -1,3 +1,5 @@
+import { makeUrlWithQuery } from './query-serializer.js';
+
 type Props = {
   /**
    * 필수
@@ -91,17 +93,7 @@ export const makeAppleLoginUrl = ({
   scope = 'name email',
   ...rest
 }: Props) => {
-  // 제공된 파라미터로 URLSearchParams 객체를 생성합니다.
-  // (Create URLSearchParams object with provided parameters)
-  const params = new URLSearchParams({
-    response_type,
-    scope,
-    ...rest,
-  });
-
-  // 완전한 Apple 로그인 URL을 반환합니다.
-  // (Return the complete Apple login URL)
-  return `${APPLE_LOGIN_URL}?${params.toString()}`;
+  return makeUrlWithQuery(APPLE_LOGIN_URL, { response_type, scope, ...rest });
 };
 
 /**
