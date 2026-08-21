@@ -1,3 +1,5 @@
+import { makeUrlWithQuery } from './query-serializer.js';
+
 type Props = {
   /**
    * 필수
@@ -87,20 +89,10 @@ export const makeFacebookOAuthUrlByVersion = (version: string) =>
  * ```
  */
 export const makeFacebookLoginUrl = (props: Props) => {
-  // Destructure version from props with a default value
-  const { version = 'v24.0', response_type = 'code', ...rest } = props;
+  const { version = 'v24.0', response_type = 'code', ...parameters } = props;
+  const endpoint = makeFacebookOAuthUrlByVersion(version);
 
-  // Create URLSearchParams from the remaining properties
-  const params = new URLSearchParams({
-    response_type,
-    ...rest,
-  });
-
-  // Generate the base Facebook login URL by version
-  const url = makeFacebookOAuthUrlByVersion(version);
-
-  // Return the complete URL with query parameters
-  return `${url}?${params.toString()}`;
+  return makeUrlWithQuery(endpoint, { response_type, ...parameters });
 };
 
 /**

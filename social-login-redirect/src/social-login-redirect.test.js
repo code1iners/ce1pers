@@ -8,6 +8,61 @@ import {
   makeNaverLoginUrl,
 } from "../dist/index.js";
 import { makeAppleLoginUrl } from "../dist/src/apple-login.js";
+import { makeFacebookLoginUrl } from "../dist/src/facebook-login.js";
+
+test("builds a Facebook authorization URL with its default version", () => {
+  const redirectUri =
+    "https://example.com/auth/facebook/callback?source=web&return=%2Fdashboard";
+  const url = new URL(
+    makeFacebookLoginUrl({
+      client_id: "client-id",
+      redirect_uri: redirectUri,
+      state: "state-value&attempt=1",
+      scope: "email public_profile",
+    }),
+  );
+
+  assert.equal(url.origin, "https://www.facebook.com");
+  assert.equal(url.pathname, "/v24.0/dialog/oauth");
+  assert.equal(url.searchParams.get("response_type"), "code");
+  assert.equal(url.searchParams.get("client_id"), "client-id");
+  assert.equal(url.searchParams.get("redirect_uri"), redirectUri);
+  assert.equal(url.searchParams.get("state"), "state-value&attempt=1");
+  assert.equal(url.searchParams.get("scope"), "email public_profile");
+  assert.equal(url.searchParams.get("version"), null);
+});
+
+test("keeps a requested Facebook OAuth version in the endpoint path", () => {
+  const url = new URL(
+    makeFacebookLoginUrl({
+      version: "v21.0",
+      client_id: "client-id",
+      redirect_uri: "https://example.com/auth/facebook/callback",
+      state: "state-value",
+      response_type: "token",
+    }),
+  );
+
+  assert.equal(url.origin, "https://www.facebook.com");
+  assert.equal(url.pathname, "/v21.0/dialog/oauth");
+  assert.equal(url.searchParams.get("response_type"), "token");
+  assert.equal(url.searchParams.get("version"), null);
+});
+
+test("omits undefined Facebook optional inputs", () => {
+  const url = new URL(
+    makeFacebookLoginUrl({
+      client_id: "client-id",
+      redirect_uri: "https://example.com/auth/facebook/callback",
+      state: "state-value",
+      scope: undefined,
+      response_type: undefined,
+    }),
+  );
+
+  assert.equal(url.searchParams.get("response_type"), "code");
+  assert.equal(url.searchParams.has("scope"), false);
+});
 
 test("builds an Apple authorization URL with provider defaults", () => {
   const redirectUri =
