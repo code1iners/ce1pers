@@ -1,3 +1,5 @@
+import { makeUrlWithQuery } from './query-serializer.js';
+
 type Props = {
   /**
    * 필수
@@ -148,12 +150,7 @@ export const makeKakaoLoginUrl = ({
   response_type = 'code',
   ...rest
 }: Props) => {
-  const params = new URLSearchParams({
-    response_type,
-    ...rest,
-  });
-
-  return `${KAKAO_LOGIN_URL}?${params.toString()}`;
+  return makeUrlWithQuery(KAKAO_LOGIN_URL, { response_type, ...rest });
 };
 
 /**
