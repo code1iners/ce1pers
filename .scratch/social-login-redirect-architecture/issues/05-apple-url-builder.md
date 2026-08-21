@@ -20,6 +20,8 @@
 - `social-login-redirect/src/apple-login.ts`가 Apple endpoint와 기본 `response_type=code`, `scope=name email`을 유지하면서 공통 `makeUrlWithQuery`를 사용하도록 변경했습니다.
 - Apple callback URI 내부 query, client ID, nonce, response mode, state를 parsed URL 기준으로 검증하고, `undefined` 생략과 빈 문자열 보존도 확인했습니다.
 - 기존 `appleLogin` redirect와 `index.ts` public export는 변경하지 않았습니다.
-- `npm test`가 lint·build·Node test를 포함해 9/9 통과했습니다. 저장소 전체 회귀 검증은 커밋 전 실행합니다.
+- `npm test`가 lint·build·Node test를 포함해 9/9 통과했습니다.
+- `pnpm exec tsc --noEmit`, `node scripts/verify-packages.mjs`, `git diff --check`가 통과했고, `HEAD^...HEAD` 기준 standards/spec code review에서도 발견사항이 없었습니다.
+- 커밋: `e40cf24` (`refactor(social-login-redirect): Apple query serialization 공통화`)
 - 브라우저 기반 live Apple OAuth 인증과 실제 provider 수락 여부는 검증하지 않았습니다.
 - 기존 unrelated dirty worktree 변경은 보존했습니다.
