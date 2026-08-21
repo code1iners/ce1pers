@@ -8,7 +8,7 @@ React에서 브라우저 viewport 크기를 구독하는 hook입니다.
 npm install @ce1pers/viewport-helpers react
 ```
 
-React `18` 이상을 peer dependency로 요구합니다.
+React `18` 또는 `19`를 peer dependency로 지원합니다.
 
 ## 공개 API
 
