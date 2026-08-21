@@ -30,9 +30,14 @@ const captureLoginUrl = (login, input) => {
   }
 };
 
-const makeAppleRedirectUrl = (input) => captureLoginUrl(appleLogin, input);
-const makeFacebookRedirectUrl = (input) =>
-  captureLoginUrl(facebookLogin, input);
+/** Redirect-only login 함수를 URL builder 테스트 seam으로 변환합니다. */
+const makeRedirectUrlBuilder = (login) => (input) =>
+  captureLoginUrl(login, input);
+
+/** Apple redirect login URL test builder. */
+const makeAppleRedirectUrl = makeRedirectUrlBuilder(appleLogin);
+/** Facebook redirect login URL test builder. */
+const makeFacebookRedirectUrl = makeRedirectUrlBuilder(facebookLogin);
 
 const makeMatrixRedirectUri = (provider) =>
   `https://example.com/auth/${provider}/callback?source=matrix&return=%2Fdashboard`;
